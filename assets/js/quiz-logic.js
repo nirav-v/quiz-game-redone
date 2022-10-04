@@ -66,7 +66,7 @@ const checkAnswer = function () {
 
 const endGame = function () {
   console.log("game end");
-  wrapperDiv.textContent = "GAME OVER";
+  wrapperDiv.textContent = "GAME OVER. Your Score: " + time;
 };
 
 startBtnEl.onclick = startGame;
