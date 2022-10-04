@@ -1,7 +1,10 @@
 // only start screen visible at first
+var wrapperDiv = document.querySelector(".wrapper")
 var startScreenEL = document.querySelector(".start");
 var startBtnEl = document.getElementById("start-btn");
 var titleEl = document.querySelector(".question-title");
+var questionDiv = document.querySelector(".question");
+
 var choicesDiv = document.querySelector(".choices");
 
 // Initialize questionIndex to 0
@@ -13,7 +16,6 @@ const startGame = function () {
   startScreenEL.style.visibility = "hidden";
 
   // question div becomes visible
-  var questionDiv = document.querySelector(".question");
   questionDiv.removeAttribute("style");
   showQuestion();
 };
@@ -40,12 +42,24 @@ const checkAnswer = function () {
     console.log("correct answer");
     //clear out the current question's choice buttons
     choicesDiv.textContent = "";
-    // move to next question
+      // if we are at the last question, end the game
+      if (questionIndex === questions.length - 1){
+       return endGame();
+       
+      }
+    // move to next question  
     questionIndex++;
     showQuestion();
   } else {
     console.log("WRONG");
   }
+
 };
+
+const endGame = function(){
+  console.log("game end")
+  wrapperDiv.textContent = "GAME OVER"
+}
+
 
 startBtnEl.onclick = startGame;
