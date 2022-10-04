@@ -9,21 +9,22 @@ var choicesDiv = document.querySelector(".choices");
 // display the timer, 10 seconds per question
 let time = questions.length * 10;
 var timeEl = document.getElementById("time");
-
+var timer = setInterval(() => {
+  time--;
+  //decrement and re-render time every 1 second
+  timeEl.textContent = "Time left: " + time;
+  //stop timer at 0
+  if (time <= 0) {
+    clearInterval(timer);
+  }
+}, 1000);
 // Initialize questionIndex to 0
 let questionIndex = 0;
 
 // upon click of start button, start screen hidden,
 const startGame = function () {
-
-  // show starting time 
+  // show starting time
   timeEl.textContent = "Time left: " + time;
-
-  var timer = setInterval(() => {
-    time--;
-    //decrement and re-render time every 1 second
-    timeEl.textContent = "Time left: " + time;
-  }, 1000);
 
   startScreenEL.setAttribute("class", "hide");
   // startScreenEL.style.visibility = "hidden";
@@ -71,6 +72,7 @@ const checkAnswer = function () {
 const endGame = function () {
   console.log("game end");
   wrapperDiv.textContent = "GAME OVER. Your Score: " + time;
+  clearInterval(timer);
 };
 
 startBtnEl.onclick = startGame;
