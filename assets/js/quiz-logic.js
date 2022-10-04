@@ -1,22 +1,32 @@
 // only start screen visible at first
-var wrapperDiv = document.querySelector(".wrapper")
+var wrapperDiv = document.querySelector(".wrapper");
 var startScreenEL = document.querySelector(".start");
 var startBtnEl = document.getElementById("start-btn");
 var titleEl = document.querySelector(".question-title");
 var questionDiv = document.querySelector(".question");
-
 var choicesDiv = document.querySelector(".choices");
 
+// display the timer, 10 seconds per question
+let time = questions.length * 10;
+var timeEl = document.getElementById("time");
+
 // Initialize questionIndex to 0
-var questionIndex = 0;
+let questionIndex = 0;
 
 // upon click of start button, start screen hidden,
 const startGame = function () {
-  startScreenEL.setAttribute("style", "display: none");
-  startScreenEL.style.visibility = "hidden";
+  setInterval(function () {
+    // show time
+    timeEl.textContent = "Time left: " + time;
+    time--;
+  }, 1000);
 
-  // question div becomes visible
-  questionDiv.removeAttribute("style");
+  startScreenEL.setAttribute("class", "hide");
+  // startScreenEL.style.visibility = "hidden";
+
+  // question div becomes visible by removing hide class name
+  questionDiv.classList.remove("hide");
+
   showQuestion();
 };
 
@@ -42,24 +52,21 @@ const checkAnswer = function () {
     console.log("correct answer");
     //clear out the current question's choice buttons
     choicesDiv.textContent = "";
-      // if we are at the last question, end the game
-      if (questionIndex === questions.length - 1){
-       return endGame();
-       
-      }
-    // move to next question  
+    // if we are at the last question, end the game
+    if (questionIndex === questions.length - 1) {
+      return endGame();
+    }
+    // move to next question
     questionIndex++;
     showQuestion();
   } else {
     console.log("WRONG");
   }
-
 };
 
-const endGame = function(){
-  console.log("game end")
-  wrapperDiv.textContent = "GAME OVER"
-}
-
+const endGame = function () {
+  console.log("game end");
+  wrapperDiv.textContent = "GAME OVER";
+};
 
 startBtnEl.onclick = startGame;
