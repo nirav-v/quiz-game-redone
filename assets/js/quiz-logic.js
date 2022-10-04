@@ -15,10 +15,14 @@ let questionIndex = 0;
 
 // upon click of start button, start screen hidden,
 const startGame = function () {
-  setInterval(function () {
-    // show time
-    timeEl.textContent = "Time left: " + time;
+  
+  // show starting time 
+  timeEl.textContent = "Time left: " + time;
+
+  var timer = setInterval(() => {
     time--;
+    //decrement and re-render time every 1 second
+    timeEl.textContent = "Time left: " + time;
   }, 1000);
 
   startScreenEL.setAttribute("class", "hide");
