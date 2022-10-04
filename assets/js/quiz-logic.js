@@ -15,7 +15,7 @@ let questionIndex = 0;
 
 // upon click of start button, start screen hidden,
 const startGame = function () {
-  
+
   // show starting time 
   timeEl.textContent = "Time left: " + time;
 

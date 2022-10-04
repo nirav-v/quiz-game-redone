@@ -2,3 +2,24 @@
     display: none;
 }
 
+
+
+.wrapper{
+    width: 80%;
+    margin: 30px auto;
+    border: 10px solid black;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+}
+
+#start-btn{
+    position: relative;
+    left: 45%;
+    color: aliceblue;
+    background-color: rgb(78, 85, 83);
+        
+}
