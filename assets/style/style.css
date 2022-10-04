@@ -1,26 +1,37 @@
 .hide {
-    display: none;
+  display: none;
 }
 
-
-
-.wrapper{
-    width: 80%;
-    margin: 30px auto;
-    border: 10px solid black;
+.wrapper {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: 30px auto;
+  border: 10px solid black;
+  padding: 5px;
 }
 
 h1,
 h2,
 h3 {
-    text-align: center;
+  text-align: center;
 }
 
+.choices {
+    display: flex;
+    justify-content: center;
+}
 
-#start-btn{
-    position: relative;
-    left: 45%;
-    color: aliceblue;
-    background-color: rgb(78, 85, 83);
-       
+button {
+  color: aliceblue;
+  font-family:'Courier New', Courier, monospace ;
+  background-color: rgb(78, 85, 83);
+  display: block;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+#start-btn {
+  position: relative;
+  left: 45%;
 }
