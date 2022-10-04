@@ -6,26 +6,29 @@ var titleEl = document.querySelector(".question-title");
 var questionDiv = document.querySelector(".question");
 var choicesDiv = document.querySelector(".choices");
 
-// display the timer, 10 seconds per question
-let time = questions.length * 10;
-var timeEl = document.getElementById("time");
-var timer = setInterval(() => {
-  time--;
-  //decrement and re-render time every 1 second
-  timeEl.textContent = "Time left: " + time;
-  //stop timer at 0
-  if (time <= 0) {
-    clearInterval(timer);
-  }
-}, 1000);
 // Initialize questionIndex to 0
 let questionIndex = 0;
 
-// upon click of start button, start screen hidden,
+// display the timer, 10 seconds per question
+let time = questions.length * 10;
+var timeEl = document.getElementById("time");
+var timer;
+
+// upon click of start button
 const startGame = function () {
   // show starting time
   timeEl.textContent = "Time left: " + time;
+   timer = setInterval(() => {
+    //decrement and re-render time every 1 second
+    timeEl.textContent = "Time left: " + time;
+    time--;
+    //stop timer at 0
+    if (time <= 0) {
+      endGame();
+    }
+  }, 1000);
 
+  //hide the start screen
   startScreenEL.setAttribute("class", "hide");
   // startScreenEL.style.visibility = "hidden";
 
@@ -70,9 +73,11 @@ const checkAnswer = function () {
 };
 
 const endGame = function () {
+  questionDiv.classList.add("hide")
+  clearInterval(timer);
   console.log("game end");
   wrapperDiv.textContent = "GAME OVER. Your Score: " + time;
-  clearInterval(timer);
+  
 };
 
 startBtnEl.onclick = startGame;

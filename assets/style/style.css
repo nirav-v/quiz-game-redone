@@ -17,18 +17,18 @@ h3 {
   text-align: center;
 }
 
+button {
+    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(78, 85, 83);
+    display: block;
+    margin: 5px;
+    border-radius: 10px;
+}
+
 .choices {
     display: flex;
     justify-content: center;
-}
-
-button {
-  color: aliceblue;
-  font-family:'Courier New', Courier, monospace ;
-  background-color: rgb(78, 85, 83);
-  display: block;
-  margin: 5px;
-  border-radius: 10px;
 }
 
 #start-btn {
