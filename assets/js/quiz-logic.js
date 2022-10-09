@@ -5,6 +5,12 @@ var startBtnEl = document.getElementById("start-btn");
 var titleEl = document.querySelector(".question-title");
 var questionDiv = document.querySelector(".question");
 var choicesDiv = document.querySelector(".choices");
+var guessResultDiv = document.querySelector(".answer-result");
+var userForm = document.querySelector(".user-form");
+
+// sound effects
+var sfxRight = new Audio("assets/sfx/correct.wav");
+var sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
 // Initialize questionIndex to 0
 let questionIndex = 0;
@@ -18,7 +24,7 @@ var timer;
 const startGame = function () {
   // show starting time
   timeEl.textContent = "Time left: " + time;
-   timer = setInterval(() => {
+  timer = setInterval(() => {
     //decrement and re-render time every 1 second
     timeEl.textContent = "Time left: " + time;
     time--;
@@ -58,6 +64,7 @@ const checkAnswer = function () {
 
   if (guess == questions[questionIndex].answer) {
     console.log("correct answer");
+    guessResultDiv.textContent = "Correct :)";
     //clear out the current question's choice buttons
     choicesDiv.textContent = "";
     // if we are at the last question, end the game
@@ -68,16 +75,32 @@ const checkAnswer = function () {
     questionIndex++;
     showQuestion();
   } else {
+    guessResultDiv.textContent = "Wrong :(";
     console.log("WRONG");
   }
+
+  // clear out guess result after a second
+  guessResultDiv.classList.remove("hide");
+  setTimeout((()=>{
+    guessResultDiv.classList.add("hide");
+  }), 1000);
 };
 
 const endGame = function () {
-  questionDiv.classList.add("hide")
+  questionDiv.classList.add("hide");
   clearInterval(timer);
-  console.log("game end");
-  wrapperDiv.textContent = "GAME OVER. Your Score: " + time;
-  
+  // console.log("game end");
+  let finalScore = time;
+  var messageEl = document.querySelector(".message");
+  let gameOverMessage = `Congrats Baby. Your Score is ${finalScore}`;
+  messageEl.textContent = gameOverMessage;
+
+  // render the form for name
+  userForm.classList.remove("hide");
 };
+
+// const saveScore = function(){
+
+// }
 
 startBtnEl.onclick = startGame;
